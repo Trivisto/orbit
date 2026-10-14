@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbit — 8D & Immersive Audio Studio</title>
+<meta name="description" content="Turn any sound into immersive, all-around-you audio. Exact speed control, cinematic reverb, WAV and MP3 export. Free for Windows.">
+<meta property="og:title" content="Orbit — 8D & Immersive Audio Studio">
+<meta property="og:description" content="Make any sound play from everywhere around you. Slowed, reverb, 8D. Free for Windows.">
+<meta property="og:image" content="screenshot.jpg">
+<link rel="icon" href="favicon.png">
+<style>
+:root {
+  --bg: #0a0913; --card: rgba(255,255,255,.035); --line: rgba(255,255,255,.08); --line-2: rgba(255,255,255,.14);
+  --text: #eeecff; --muted: #9a96b8; --faint: #625e85; --violet: #8b5cf6; --violet-2: #a78bfa; --cyan: #22d3ee;
+  --grad: linear-gradient(135deg, #8b5cf6 0%, #6d7cff 50%, #22d3ee 100%);
+  --font: "Segoe UI Variable Text", "Segoe UI", Inter, system-ui, -apple-system, sans-serif;
+  --display: "Segoe UI Variable Display", "Segoe UI", Inter, system-ui, -apple-system, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+.bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(110px); opacity: .5; }
+.b1 { width: 720px; height: 720px; left: -220px; top: -280px; background: radial-gradient(circle, #5b3bd6, transparent 70%); animation: drift 26s ease-in-out infinite alternate; }
+.b2 { width: 640px; height: 640px; right: -200px; top: 380px; background: radial-gradient(circle, #0e7490, transparent 70%); animation: drift 34s ease-in-out infinite alternate-reverse; }
+@keyframes drift { to { transform: translate(70px, 50px) scale(1.08); } }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
+
+nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-weight: 700; font-size: 19px; }
+.brand img { width: 32px; height: 32px; }
+.tag { font-size: 11px; font-weight: 650; letter-spacing: .6px; text-transform: uppercase; color: var(--violet-2); background: rgba(139,92,246,.14); border: 1px solid rgba(139,92,246,.3); padding: 2px 8px; border-radius: 99px; }
+.nav-links { display: flex; gap: 26px; font-size: 14.5px; color: var(--muted); }
+.nav-links a { text-decoration: none; transition: color .15s; }
+.nav-links a:hover { color: var(--text); }
+
+.hero { text-align: center; padding: 70px 0 40px; }
+.hero .app-icon { width: 104px; height: 104px; filter: drop-shadow(0 18px 40px rgba(139,92,246,.55)); animation: float 6s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-8px); } }
+h1 { font-family: var(--display); font-size: clamp(40px, 7vw, 72px); line-height: 1.04; letter-spacing: -1.5px; margin: 26px 0 18px; font-weight: 750; }
+h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lede { max-width: 620px; margin: 0 auto; color: var(--muted); font-size: clamp(16px, 2.2vw, 19px); }
+.cta { margin-top: 34px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 11px; padding: 16px 30px; border-radius: 16px; background: var(--grad); color: #fff; font-weight: 650; font-size: 17px; text-decoration: none; border: 0; cursor: pointer; box-shadow: 0 14px 40px -10px rgba(139,92,246,.85); transition: transform .15s, filter .15s, box-shadow .15s; }
+.btn:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 20px 50px -10px rgba(139,92,246,.95); }
+.btn svg { width: 22px; height: 22px; }
+.btn.ghost { background: var(--card); border: 1px solid var(--line-2); box-shadow: none; font-size: 15px; padding: 12px 22px; }
+.meta { font-size: 13.5px; color: var(--faint); }
+.meta b { color: var(--muted); font-weight: 600; }
+
+.shot { position: relative; margin: 60px auto 0; max-width: 1040px; }
+.shot::before { content: ""; position: absolute; inset: 8% 10% -4%; background: var(--grad); filter: blur(80px); opacity: .35; z-index: -1; border-radius: 40px; }
+.shot img { width: 100%; display: block; border-radius: 16px; border: 1px solid var(--line-2); box-shadow: 0 40px 100px -30px rgba(0,0,0,.9); }
+
+section { padding: 100px 0 0; }
+.eyebrow { text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--violet-2); }
+h2 { text-align: center; font-family: var(--display); font-size: clamp(30px, 4.5vw, 44px); letter-spacing: -.8px; margin: 10px 0 14px; line-height: 1.1; }
+.sub { text-align: center; color: var(--muted); max-width: 560px; margin: 0 auto 46px; }
+
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 26px; transition: border-color .2s, transform .2s; }
+.card:hover { border-color: rgba(167,139,250,.35); transform: translateY(-3px); }
+.ico { width: 44px; height: 44px; border-radius: 13px; background: var(--grad); display: grid; place-items: center; margin-bottom: 18px; box-shadow: 0 8px 22px -8px rgba(139,92,246,.9); }
+.ico svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.card h3 { margin: 0 0 8px; font-family: var(--display); font-size: 18.5px; }
+.card p { margin: 0; color: var(--muted); font-size: 15px; }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: s; }
+.step { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 28px 24px 24px; }
+.step::before { counter-increment: s; content: counter(s); position: absolute; top: -16px; left: 24px; width: 34px; height: 34px; border-radius: 50%; background: var(--grad); display: grid; place-items: center; font-weight: 750; font-family: var(--display); box-shadow: 0 6px 18px -6px rgba(139,92,246,.9); }
+.step h3 { margin: 6px 0 8px; font-family: var(--display); font-size: 18px; }
+.step p { margin: 0; color: var(--muted); font-size: 15px; }
+.note { margin: 18px auto 0; max-width: 760px; display: flex; gap: 14px; align-items: flex-start; padding: 16px 20px; border-radius: 16px; background: rgba(34,211,238,.06); border: 1px solid rgba(34,211,238,.22); font-size: 14.5px; color: #c9e9f0; }
+.note svg { flex: none; width: 22px; height: 22px; stroke: var(--cyan); fill: none; stroke-width: 2; margin-top: 1px; }
+kbd { font-family: inherit; font-size: 13px; padding: 1px 7px; border-radius: 6px; background: rgba(255,255,255,.08); border: 1px solid var(--line-2); }
+
+.faq { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+details { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 4px 22px; }
+summary { cursor: pointer; list-style: none; padding: 16px 0; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-size: 22px; color: var(--muted); transition: transform .2s; }
+details[open] summary::after { transform: rotate(45deg); }
+details p { margin: 0 0 18px; color: var(--muted); font-size: 15px; }
+
+.final { text-align: center; padding: 110px 0 40px; }
+.final h2 { margin-bottom: 26px; }
+footer { border-top: 1px solid var(--line); margin-top: 80px; padding: 28px 0 40px; display: flex; justify-content: space-between; color: var(--faint); font-size: 14px; flex-wrap: wrap; gap: 10px; }
+
+@media (max-width: 860px) { .grid, .steps { grid-template-columns: 1fr; } .nav-links { display: none; } .steps { gap: 30px; } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body>
+<div class="bg"><i class="blob b1"></i><i class="blob b2"></i></div>
+
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#"><img src="favicon.png" alt="">Orbit <span class="tag">8D Studio</span></a>
+    <div class="nav-links"><a href="#features">Features</a><a href="#install">Install</a><a href="#faq">FAQ</a></div>
+  </nav>
+
+  <header class="hero">
+    <img class="app-icon" src="icon.png" alt="Orbit app icon">
+    <h1>Sound that comes from<br><span class="grad">everywhere.</span></h1>
+    <p class="lede">Orbit turns any song or sound into immersive audio that surrounds you — plus exact speed control and cinematic reverb. Made for editors. Free for Windows.</p>
+    <div class="cta">
+      <a class="btn dl" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 5-5m-5 5-5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        Download for Windows
+      </a>
+      <span class="meta"><b>Version <span class="ver">1.1.0</span></b> · Windows 10 &amp; 11 · 64-bit · ~100 MB</span>
+    </div>
+    <div class="shot"><img src="screenshot.jpg" alt="Orbit app showing the immersive space view" loading="eager"></div>
+  </header>
+
+  <section id="features">
+    <div class="eyebrow">Features</div>
+    <h2>Everything you need for the perfect edit sound</h2>
+    <p class="sub">Drop in a file, pick a vibe, export. Everything runs on your PC — nothing gets uploaded.</p>
+    <div class="grid">
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7.5" stroke-dasharray="3 3"/><path d="M12 1.5v2M12 20.5v2M1.5 12h2M20.5 12h2"/></svg></div><h3>Immersive Space</h3><p>Eight virtual speakers around and above your head. The sound fills the room instead of sitting in it.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-25 12 12)"/><circle cx="12" cy="12" r="2.5"/></svg></div><h3>Classic 8D</h3><p>The sound circling your head — with circle, figure-8, swing and wander paths, and full control over the speed of each lap.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-6"/></svg></div><h3>Exact speed</h3><p>Type any speed down to 0.001×. Slowed style for that deep, moody pitch — or keep the pitch and change only the tempo.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 9v6M10 6v12M14 8v8M18 10v4"/></svg></div><h3>Cinematic reverb</h3><p>Room, Hall, Arena and Dream reverbs with size, pre-delay, tone and low cut. Slowed + reverb in one click.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></div><h3>Studio-quality export</h3><p>24-bit WAV or 320 kbps MP3, normalized and ready to drop into CapCut, Premiere, After Effects or any editor.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>100% offline</h3><p>No account, no uploads, no limits. Works with MP3, WAV, FLAC, M4A — even the audio from MP4 videos.</p></div>
+    </div>
+  </section>
+
+  <section id="install">
+    <div class="eyebrow">Install</div>
+    <h2>Up and running in a minute</h2>
+    <p class="sub">Three steps. No account needed.</p>
+    <div class="steps">
+      <div class="step"><h3>Download</h3><p>Click <b>Download for Windows</b> above. You'll get <b>Orbit-Setup.exe</b>.</p></div>
+      <div class="step"><h3>Run the installer</h3><p>Open it and click through the setup — pick a folder or keep the default. Orbit opens when it's done.</p></div>
+      <div class="step"><h3>Put headphones on</h3><p>Drop any sound in, pick a preset like <b>Immersive</b> or <b>Slowed + Reverb</b>, and hit Export.</p></div>
+    </div>
+    <div class="note">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M12 7.5v5.5M12 16.5v.01"/></svg>
+      <span>If Windows shows <b>"Windows protected your PC"</b>, click <kbd>More info</kbd> then <kbd>Run anyway</kbd>. That appears for new apps from independent developers that aren't code-signed yet.</span>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="eyebrow">FAQ</div>
+    <h2>Questions</h2>
+    <div class="faq" style="margin-top:40px">
+      <details><summary>Is Orbit free?</summary><p>Yes — completely free, with no ads, account or watermark.</p></details>
+      <details><summary>Do I need headphones?</summary><p>For the full effect, yes. Immersive and 8D audio rely on each ear hearing something slightly different, which only works properly in headphones or earbuds.</p></details>
+      <details><summary>What's the difference between Immersive and 8D?</summary><p>8D moves the sound in a circle around your head. Immersive makes the sound come from everywhere at once, like you're standing inside it. You can switch between them with one click.</p></details>
+      <details><summary>Does it work on Mac or phone?</summary><p>Right now Orbit is Windows 10 and 11 only.</p></details>
+      <details><summary>Can I use the songs I make in my edits?</summary><p>Orbit changes how a sound feels, not who owns it. Platforms can still recognise copyrighted songs after effects, so only post audio you have the right to use.</p></details>
+    </div>
+  </section>
+
+  <div class="final">
+    <h2>Ready to hear the difference?</h2>
+    <a class="btn dl" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 5-5m-5 5-5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>Download for Windows</a>
+  </div>
+
+  <footer><span>© 2026 Trivisto · Orbit</span><span><a class="gh" href="#">Release notes &amp; older versions</a></span></footer>
+</div>
+
+<script>
+// Works automatically on GitHub Pages: https://USERNAME.github.io/REPO/
+// -> download link: https://github.com/USERNAME/REPO/releases/latest/download/Orbit-Setup.exe
+(function () {
+  var host = location.hostname, m = host.match(/^([^.]+)\.github\.io$/);
+  if (!m) return;
+  var user = m[1], repo = location.pathname.split('/').filter(Boolean)[0] || (user + '.github.io');
+  var base = 'https://github.com/' + user + '/' + repo + '/releases';
+  document.querySelectorAll('a.dl').forEach(function (a) { a.href = base + '/latest/download/Orbit-Setup.exe'; });
+  document.querySelectorAll('a.gh').forEach(function (a) { a.href = base; });
+  fetch('https://api.github.com/repos/' + user + '/' + repo + '/releases/latest')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) { if (j && j.tag_name) document.querySelectorAll('.ver').forEach(function (e) { e.textContent = j.tag_name.replace(/^v/, ''); }); })
+    .catch(function () {});
+})();
+</script>
+</body>
+</html>
